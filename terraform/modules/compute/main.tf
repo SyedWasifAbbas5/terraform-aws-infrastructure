@@ -27,9 +27,10 @@ resource "aws_security_group" "app" {
   }
 
   egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    description = "HTTPS outbound"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -45,6 +46,14 @@ resource "aws_instance" "app" {
   subnet_id                   = var.public_subnet_id
   vpc_security_group_ids      = [aws_security_group.app.id]
   associate_public_ip_address = true
+
+  metadata_options {
+    http_tokens = "required"
+  }
+
+  root_block_device {
+    encrypted = true
+  }
 
   tags = {
     Name        = "${var.project_name}-server"

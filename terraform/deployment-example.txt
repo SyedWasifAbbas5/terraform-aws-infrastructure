@@ -1,0 +1,33 @@
+SIMULATED AWS DEPLOYMENT EXAMPLE
+================================
+
+This is an example of the resources Terraform is configured to create.
+No AWS resources were actually deployed during portfolio development.
+
+Expected resources:
+
+aws_vpc.main
+aws_internet_gateway.main
+aws_subnet.public
+aws_subnet.private
+aws_route_table.public
+aws_route_table.private
+aws_route_table_association.public
+aws_route_table_association.private
+aws_security_group.app
+aws_instance.app
+
+Expected architecture:
+
+VPC: 10.0.0.0/16
+Public subnet: 10.0.1.0/24
+Private subnet: 10.0.2.0/24
+EC2 instance: t3.micro
+Region: us-east-1
+Environment: production
+
+Terraform validation:
+PASS
+
+AWS deployment:
+NOT EXECUTED - AWS credentials/account not configured
